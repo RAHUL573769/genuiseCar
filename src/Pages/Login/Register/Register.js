@@ -1,6 +1,9 @@
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import auth from "../../../Firebase/Firebaseinit";
 
 const Register = () => {
   const registerEmail = useRef();
@@ -16,7 +19,8 @@ const Register = () => {
     const password = registerPass.current.value;
     console.log(password);
   };
-
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   return (
     <div className="w-50 mx-auto">
       <h2 className="text-center text-primary">Please Register</h2>
