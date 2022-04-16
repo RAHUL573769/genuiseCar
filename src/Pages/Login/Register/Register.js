@@ -13,6 +13,11 @@ const Register = () => {
   const navigateLogin = (event) => {
     navigate("/login");
   };
+
+  if (user) {
+    navigate("/home");
+  }
+
   const handleRegister = (event) => {
     event.preventDefault();
     const email = registerEmail.current.value;
