@@ -9,17 +9,18 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
-  if (user) {
-    navigate("/register");
-  }
-
   const emailRef = useRef("");
   const passRef = useRef("");
 
+  if (user) {
+    navigate("/register");
+    return;
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passRef.current.value;
+
     signInWithEmailAndPassword(email, password);
   };
 
@@ -39,13 +40,9 @@ const Login = () => {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group
-          ref={passRef}
-          className="mb-3"
-          controlId="formBasicPassword"
-        >
+        <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control ref={passRef} type="password" placeholder="Password" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
